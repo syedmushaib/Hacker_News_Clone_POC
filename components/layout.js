@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Link from 'next/link';
 // import styles from './layout.module.css';
 import HeaderSection from './header-section';
@@ -5,10 +6,13 @@ import HeaderComponent from './header-comp';
 // import utilStyles from '../styles/utils.module.css';
 
 
-const name = 'Syed Mushaib Khalid';
-export const siteTitle = 'Next.js Sample Website';
+function Layout({ children }) {
+  const [nextPage, setNextPage] = useState(1);
+  const updateNextPage = (np) => {
+    setNextPage(np);
+  };
 
-function Layout({ children, home }) {
+  console.log('nextPage', nextPage);
   return (
     <div >
       {/* meta tags and other html head supported tag are included inside "HeaderSection" */}
@@ -20,7 +24,12 @@ function Layout({ children, home }) {
 
       <main>{children}</main>
 
-      <footer>More</footer>
+      <footer>
+        <Link href="/news-page/[id]" as={`/news-page/${String(nextPage)}`}>
+          <a onClick={() => updateNextPage(nextPage + 1)}>Read</a>
+        </Link>
+      </footer>
+
     </div>
   )
 }

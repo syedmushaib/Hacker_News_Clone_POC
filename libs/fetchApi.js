@@ -4,15 +4,13 @@ export async function getItems(id) {
   // https://hn.algolia.com/api/v1/search?&page=0
   const baseUrl = 'https://hn.algolia.com/api/v1/search';
   const res = await fetch(`${baseUrl}?&page=${id}`);
-
+  
   try {
     const json = await res.json();
-    console.log('XXXXXXXX', json)
-    const {hits, nbPages} = json;
+    const {hits} = json;
     return {
       props: {
-        nbPages, 
-        data: hits
+        data: hits,
       },
     };
   } catch(err) {
@@ -21,5 +19,17 @@ export async function getItems(id) {
   }
 }
 
+
+export function getAllPageNumber() {
+  return [...Array(50).keys()].map( i => {
+    let id = i + 1;
+    console.log(id);
+    return {
+      params: {
+        id: String(id)
+      }
+    };
+  });
+}
 
 

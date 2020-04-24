@@ -1,0 +1,42 @@
+.item {
+  padding: 0.2rem;
+}
+
+.item span {
+  /* padding: 0 0.3rem; */
+}
+
+.item:nth-child(even){
+  background-color: #e6e6e0;
+}
+
+.no_comments {
+  padding: 0 2.5%;
+}
+
+.upvote_act {
+  width: 0; 
+  height: 0; 
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid #999999;
+  display: inline-block;
+  margin: 0 0.5rem;
+}
+
+.link, .author, .created, .hide_act, .copy {
+  font-size: 13px;
+  color: #8e8e8d;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.author, .hide_act {
+  color: black;
+}
+
+.hide_act {
+  cursor: pointer;
+}

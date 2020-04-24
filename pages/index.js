@@ -1,18 +1,20 @@
 import Head from 'next/head';
-import Layout, { siteTitle } from '../components/layout';
-import { getItems } from '../libs/items';
+import Layout from '../components/layout';
+import { getItems } from '../libs/fetchApi';
 import NewsItems from '../components/news-item';
-import fetch from 'node-fetch';
 
-function Home( {data} ) {
+
+
+function Home(props) {
+  const {data, numberOfPages} = props;
   return (
-    <Layout>
+    <Layout >
     <div className="container">
       <Head>
         <title>Hacker News POC</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
+
       <div>
         {data.map(item => {
           return (
@@ -20,7 +22,6 @@ function Home( {data} ) {
           );
         })}
       </div>
-
     </div>
     </Layout>
   )
@@ -28,22 +29,11 @@ function Home( {data} ) {
 
 export async function getStaticProps() {
   const resData = await getItems('0');
-  console.log(resData);
-  const {data} = resData.props;
   return {
     props: {
-      data
+      data: resData.props.data
     }
   }
 }
 
-// export async function getStaticProps() {
-//   const res = await fetch('https://hn.algolia.com/api/v1/search?&page=0')
-//   const json = await res.json() // better use it inside try .. catch
-//   return {
-//     props: {
-//       stars: json.stargazers_count,
-//     },
-//   }
-// }
 export default Home;
