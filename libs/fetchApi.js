@@ -15,7 +15,6 @@ export async function getItems(id) {
       },
     };
   } catch(err) {
-    console.log(err);
     throw err;
   }
 }
@@ -24,7 +23,6 @@ export async function getItems(id) {
 export function getAllPageNumber() {
   return [...Array(50).keys()].map( i => {
     let id = i + 1;
-    console.log(id);
     return {
       params: {
         id: String(id)

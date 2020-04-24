@@ -1,9 +1,7 @@
 .item {
   padding: 0.2rem;
-}
-
-.item span {
-  /* padding: 0 0.3rem; */
+  grid-template-columns: 1fr 4fr;
+  display: grid;
 }
 
 .item:nth-child(even){
@@ -20,10 +18,8 @@
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 10px solid #999999;
-  display: inline-block;
-  margin: 0 0.5rem;
   cursor: pointer;
-  color: red;
+  justify-self: center;
 }
 
 .upvote_act:hover {
@@ -45,4 +41,34 @@
 
 .hide_act {
   cursor: pointer;
+}
+
+.hide_act:hover {
+  color: #ee7136;;
+}
+
+.chocolate {
+  color: #aa5c2c;
+}
+
+.orange {
+  color: #ee7136;
+}
+
+.left_item {
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
+  text-align: center;
+}
+
+.more_btn {
+  display: grid;
+  grid-template-columns: 3fr 9fr;
+}
+
+.more_btn a {
+  text-decoration: none;
+  margin: 14px;
+  justify-self: right;
+  color: #ee6f2e;
 }

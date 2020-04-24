@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-// import styles from './layout.module.css';
 import HeaderSection from './header-section';
 import HeaderComponent from './header-comp';
-// import utilStyles from '../styles/utils.module.css';
+import styles from './newsItems.module.css';
 
 
 function Layout({ children, page }) {
@@ -18,9 +17,9 @@ function Layout({ children, page }) {
 
       <main>{children}</main>
 
-      <footer>
+      <footer className={styles.more_btn}>
         <Link href="/news-page/[id]" as={`/news-page/${String(page + 1)}`}>
-          <a>Read</a>
+          <a>More</a>
         </Link>
       </footer>
 
