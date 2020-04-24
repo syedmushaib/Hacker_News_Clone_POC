@@ -13,3 +13,18 @@ export function dateFormate (created_at) {
     new Date(created_at)
   );
 }
+
+export function filterAndHideItem(items, toBeHide) {
+  return items.filter( item => {
+    return item.title !== toBeHide;
+  });
+}
+
+export function updateVoteCount (items, toBeSrch) {
+  return items.filter( item => {
+    if (item.title === toBeSrch) {
+      return item.points = item.points + 1;
+    }
+    return true;
+  });
+}

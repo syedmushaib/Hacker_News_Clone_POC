@@ -1,20 +1,42 @@
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Layout  from '../../components/layout';
 import { getItems, getAllPageNumber} from '../../libs/fetchApi';
 import NewsItems from '../../components/news-item';
+import { filterAndHideItem, updateVoteCount } from '../../libs/utils';
 
-export default function Page({data}) {
+let prePage;
+
+function Page({data, page}) {
+
+  const [items, setItems] = useState(data);
+  
+  if (page !== prePage) {
+    setItems(data);
+  } 
+
+  prePage = page;
+
+  const hideFn = (toBeHide) => {
+    setItems(filterAndHideItem(items, toBeHide));
+  };
+
+  const updateVote = (toBeSrch) => {
+    const res = updateVoteCount(items, toBeSrch);
+    setItems(res);
+  };
+
   return (
-    <Layout>
+    <Layout page={page}>
     <div className="container">
       <Head>
         <title>Hacker News POC</title>
       </Head>
 
       <div>
-        {data.map(item => {
+        {items.map(item => {
           return (
-            <NewsItems {...item}/>
+            <NewsItems hideFn={hideFn} updateVote={updateVote} {...item}/>
           );
         })}
       </div>
@@ -25,7 +47,6 @@ export default function Page({data}) {
 
 export const getStaticPaths = async () => {
   const paths = getAllPageNumber();
-  console.log('paths', paths);
   return {
     paths,
     fallback: false
@@ -35,10 +56,13 @@ export const getStaticPaths = async () => {
 
 export async function getStaticProps({params}) {
   const resData = await getItems(params.id);
-  const { data } = resData.props;
+  const { data, page } = resData.props;
   return {
     props: {
-      data
+      data,
+      page
     }
   }
 }
+
+export default Page;

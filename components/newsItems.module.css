@@ -22,6 +22,12 @@
   border-bottom: 10px solid #999999;
   display: inline-block;
   margin: 0 0.5rem;
+  cursor: pointer;
+  color: red;
+}
+
+.upvote_act:hover {
+  border-bottom: 10px solid #ee6f2e;
 }
 
 .link, .author, .created, .hide_act, .copy {

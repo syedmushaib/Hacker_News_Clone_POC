@@ -7,10 +7,11 @@ export async function getItems(id) {
   
   try {
     const json = await res.json();
-    const {hits} = json;
+    const {hits, page} = json;
     return {
       props: {
         data: hits,
+        page
       },
     };
   } catch(err) {
